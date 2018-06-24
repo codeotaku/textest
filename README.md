@@ -1,3 +1,4 @@
 # textest
 disposable repo
 
+magit?
