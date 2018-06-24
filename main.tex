@@ -1,0 +1,27 @@
+
+
+\documentclass[]{article}
+
+\usepackage{luacode}
+
+\begin{document}
+    \begin{luacode}
+    local http = require("socket.http")
+    require("lualibs.lua")
+    
+    r, c, h = http.request ("http://216.58.210.138/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&sensor=false")
+    
+    if r then
+      local s =  utilities.json.tolua(r)
+      tex.print("Success! $\\to$ (")
+      tex.print(tostring(s["results"][1]["geometry"]["location"]["lat"]), ", ")
+      tex.print(tostring(s["results"][1]["geometry"]["location"]["lng"]), ")")
+    else
+      tex.print("ERROR: ")
+      tex.print(c)
+    end
+    \end{luacode}
+\end{document}
+
+
+
